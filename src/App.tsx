@@ -23,6 +23,16 @@ function App() {
             Learn React
           </a>
         </CursorArea>
+
+        <CursorArea padding="50px">
+          <button type="button">Click Me!</button>
+        </CursorArea>
+
+        <CursorArea padding="50px">
+          <label>
+            Text input: <input name="myInput" />
+          </label>
+        </CursorArea>
       </header>
     </div>
   );
