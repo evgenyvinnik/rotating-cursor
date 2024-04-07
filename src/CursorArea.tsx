@@ -1,20 +1,55 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, SyntheticEvent, useState } from "react";
 import "./App.css";
 
-export function Cursor() {
-  return <div className="overlay_bottom" style={{ background: "blue" }}></div>;
-}
-
 type Props = {
-  name: string;
+  padding: string;
 };
-export function CursorArea({ name, children }: PropsWithChildren<Props>) {
+
+export function CursorArea({ padding, children }: PropsWithChildren<Props>) {
+  const [isMouseInside, setIsMouseInside] = useState(false);
+
+  const mouseOverEvent = () => {
+    console.log("mouse over");
+  };
+
+  const mouseOutEvent = () => {
+    console.log("mous out");
+  };
+
+  const mouseEnterEvent = () => {
+    console.log("mouse enter");
+    setIsMouseInside(true);
+  };
+
+  const mouseLeaveEvent = () => {
+    console.log("mouse leave");
+    setIsMouseInside(false);
+  };
+
+  const mouseMoveEvent = (e: SyntheticEvent) => {
+    // e.preventDefault();
+    console.log(e);
+  };
+
   return (
-    <div className="overlay_container">
-      <Cursor />
-      <div className="overlay_top" style={{ background: "red" }}>
+    <div
+      onMouseEnter={mouseEnterEvent}
+      onMouseLeave={mouseLeaveEvent}
+      onMouseMove={mouseMoveEvent}
+      onMouseOut={mouseOutEvent}
+      onMouseOver={mouseOverEvent}
+      style={{ background: "red", padding: `${padding}` }}
+    >
+      <>
+        {isMouseInside && <style>{`html, body { cursor: none; }`}</style>}
         {children}
-      </div>
+      </>
     </div>
+    // <div className="overlay_container">
+    //   <Cursor />
+    //   <div className="overlay_bottom" style={{ background: "red" }}>
+    //     {children}
+    //   </div>
+    // </div>
   );
 }
