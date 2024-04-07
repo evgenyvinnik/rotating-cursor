@@ -97,7 +97,7 @@ export function CursorArea({ padding, children }: PropsWithChildren<Props>) {
     >
       <>
         {isMouseInside && (
-          <style>{`html, body { cursor: url(${cursor()}) 16 16, pointer; }`}</style>
+          <style>{`html, body { cursor: url(rotating-cursor/${cursor()}) 16 16, pointer; }`}</style>
         )}
         {children}
       </>
